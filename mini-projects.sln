@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "chapter-04", "chapter-04\ch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoLibrary", "DemoLibrary\DemoLibrary.csproj", "{5D18AEFF-12EF-43A8-8A65-289607C81484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestBookLibrary", "GuestBookLibrary\GuestBookLibrary.csproj", "{F84CA25B-FDEE-4D26-9440-272AFBC828EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestBookLibrary", "GuestBookLibrary\GuestBookLibrary.csproj", "{F84CA25B-FDEE-4D26-9440-272AFBC828EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestBookUI", "GuestBookUI\GuestBookUI.csproj", "{BF56DF0E-BCDE-49CD-9241-C3D7E1504B26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestBookUI", "GuestBookUI\GuestBookUI.csproj", "{BF56DF0E-BCDE-49CD-9241-C3D7E1504B26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipUI", "BattleshipUI\BattleshipUI.csproj", "{8BB4D31B-B498-4CEB-BA85-ABFF0F4851B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipLibrary", "BattleshipLibrary\BattleshipLibrary.csproj", "{4834E062-3491-4836-A12C-2BE3F0D567B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{BF56DF0E-BCDE-49CD-9241-C3D7E1504B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF56DF0E-BCDE-49CD-9241-C3D7E1504B26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF56DF0E-BCDE-49CD-9241-C3D7E1504B26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BB4D31B-B498-4CEB-BA85-ABFF0F4851B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB4D31B-B498-4CEB-BA85-ABFF0F4851B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB4D31B-B498-4CEB-BA85-ABFF0F4851B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB4D31B-B498-4CEB-BA85-ABFF0F4851B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4834E062-3491-4836-A12C-2BE3F0D567B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4834E062-3491-4836-A12C-2BE3F0D567B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4834E062-3491-4836-A12C-2BE3F0D567B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4834E062-3491-4836-A12C-2BE3F0D567B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
