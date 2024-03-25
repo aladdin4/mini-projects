@@ -1,105 +1,101 @@
-﻿using BattleshipLibrary.Models;
+﻿using BattleshipLibrary;
+using BattleshipLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace BattleshipUI {
 
     /// <summary>
     /// Application Summary
-    /// To build a small, two-player console game that has its roots in the classic board game Battleship.
-    /// There will be 25 squares on the board, and each player will have five ships to place on the board.
-    /// The squares will be labeled with letters and numbers, from A to E and 1 to 5.
-    /// players will take turns firing at each other's ships by calling out the coordinates of the square they want to attack.
-    /// The game will end when one player has sunk all of the other player's ships.
+    //## User Story
+    //As a player,
+    //I want to play a small, two-player console game based on the classic board game Battleship.
+    //The game should have a 5x5 game board with labeled squares from A to E and 1 to 5.
+    //Each player should have five ships to place on the board.
+    //Players should take turns firing at each other's ships by calling out the coordinates of the square they want to attack.
+    //The game should end when one player has sunk all of the other player's ships.
+    //The game should track hits, misses, and sunk ships for each player.
+    //## Acceptance Criteria
+    //- The game board should be a 5x5 grid with labeled squares.
+    //- Each player should have five ships to place on the board.
+    //- Players should take turns firing at each other's ships by entering the coordinates of the square they want to attack.
+    //- The game should track hits, misses, and sunk ships for each player.
+    //- The game should end when one player has sunk all of the other player's ships.
     /// </summary>
-    /// 
-    //TBD: Input Validation
-    //TBD: Sunk Ships
     internal class Program {
-        static int currentPlayerHits = 0;
-        static int currentPlayerMisses = 0;
-        static int currentPlayersunk = 0;
+        static PlayerModel player1 = new PlayerModel();
+        static PlayerModel player2 = new PlayerModel();
+        static List<PlayerModel> playerList = new List<PlayerModel>
+            {
+                player1,
+                player2
+            };
 
+        //TBD: Input Validation
         static void Main(string[] args) {
-
-            //intro
             Console.WriteLine("Welcome to Battleship Lite!");
             Console.WriteLine("Please Enter Diemensions for the game board.");
-            var Dimensions = int.TryParse(Console.ReadLine(), out int result) ? result : 5;
+            var dimensions = int.TryParse(Console.ReadLine(), out int result) ? result : 5;
             Console.Clear();
+            GameLogic.CreatePlayers(dimensions, playerList);
+            GameOn();
+        }
 
-            //player 1 places ships
-            var Player1ShipsGrid = CreateGrid(Dimensions, Dimensions);
-            PlaceShips("Player 1", Player1ShipsGrid);
+        static void GameOn() {
+            playerList.ForEach(player =>
+                PlaceShips(player.Name, player.ShipsGrid)
+            );
 
-            //player 2 places ships
-            var Player2ShipsGrid = CreateGrid(Dimensions, Dimensions);
-            PlaceShips("Player 2", Player2ShipsGrid);
-
-
-            //game loop
-            List<GridRow> Player1AttackGrid = CreateGrid(Dimensions, Dimensions);
-            List<GridRow> Player2AttackGrid = CreateGrid(Dimensions, Dimensions);
             while (true)
             {
-                //player 1 turn
-                PlaceShoot("Player 1", Player1AttackGrid, Player2ShipsGrid);
-                CalculateScores(Player1AttackGrid);
-                CheckForWinner("Player 1");
-
-               
-
-                //player 2 turn
-                PlaceShoot("Player 2", Player2AttackGrid, Player1ShipsGrid);
-                CalculateScores(Player2AttackGrid);
-                CheckForWinner("Player 2");
-            }
-        }
-
-        static List<GridRow> CreateGrid(int rows, int columns) {
-            var grid = new List<GridRow>();
-            for (int i = 0; i < rows; i++)
-            {
-                var letter = (char)(i + 65);
-                var row = new GridRow();
-                row.Columns = new List<GridSpot>();
-                for (int j = 0; j < columns; j++)
+                playerList.ForEach(player =>
                 {
-                    var number = j + 1;
-                    var spot = new GridSpot();
-                    spot.SpotStatus = GridSpot.Status.Empty;
-                    spot.SpotLetter = letter.ToString();
-                    spot.SpotNumber = number;
-                    row.Columns.Add(spot);
-                }
-                grid.Add(row);
-
+                    var otherPlayer = playerList.Find(p => p.Name != player.Name);
+                    PlaceShoot(player, otherPlayer);
+                    GameLogic.CalculateScores(player, otherPlayer);
+                    CheckForWinner(player);
+                });
             }
-            return grid;
         }
 
-        static void PrintGrid(List<GridRow> grid) {
+        static void PrintGrid(List<GridRowModel> grid) {
+            //to print the headers of the grid and side labels
+            //then print the grid as we do it, but instead of spotletter and number make it _ or X or O
+
+
+            Console.Write("    ");
+            for (int i = 0; i < grid[0].Columns.Count; i++)
+            {
+                if(i < 9)
+                    Console.Write((i + 1) + "   ");
+                else
+                    Console.Write((i + 1) + "  ");
+            }
+             Console.WriteLine ();
             for (int i = 0; i < grid.Count; i++)
             {
+                Console.Write(" " + (char)(i + 65) + " ");
+               
                 for (int j = 0; j < grid[i].Columns.Count; j++)
                 {
                     var spot = grid[i].Columns[j];
                     switch (spot.SpotStatus)
                     {
-                        case GridSpot.Status.Empty:
-                            Console.Write(spot.SpotLetter + spot.SpotNumber);
+                        case Status.Empty:
+                            Console.Write(" _ ");
                             break;
-                        case GridSpot.Status.Ship:
-                            Console.Write("SS");
+                        case Status.Ship:
+                            Console.Write(" S ");
                             break;
-                        case GridSpot.Status.Miss:
-                            Console.Write("MM");
+                        case Status.Miss:
+                            Console.Write(" M ");
                             break;
-                        case GridSpot.Status.Hit:
-                            Console.Write("HH");
+                        case Status.Hit:
+                            Console.Write(" H ");
                             break;
-                        case GridSpot.Status.Sunk:     //useless untill a ship can take more than one hit
-                            Console.Write("XX");
+                        case Status.Sunk:     //useless untill a ship can take more than one hit
+                            Console.Write(" X ");
                             break;
                         default:
                             break;
@@ -108,9 +104,10 @@ namespace BattleshipUI {
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
 
-        static void PlaceShips(string player, List<GridRow> grid) {
+        static void PlaceShips(string player, List<GridRowModel> grid) {
             PrintGrid(grid);
             Console.WriteLine($"{player}, please place your ships on the board.");
 
@@ -120,7 +117,7 @@ namespace BattleshipUI {
                 var coordinates = Console.ReadLine();
                 var row = coordinates[0] - 65;
                 var column = coordinates[1] - 49;
-                grid[row].Columns[column].SpotStatus = GridSpot.Status.Ship;
+                grid[row].Columns[column].SpotStatus = Status.Ship;
                 Console.Clear();
                 PrintGrid(grid);
             }
@@ -129,62 +126,34 @@ namespace BattleshipUI {
             Console.Clear();
         }
 
-        static void PlaceShoot(string player, List<GridRow> attackGrid, List<GridRow> othersShipsGrid) {
+        static void PlaceShoot(PlayerModel player, PlayerModel otherPlayer) {
             Console.Clear();
-            Console.WriteLine($"{player} , enter coordinates to attack: ");
+
+            Console.WriteLine($"{player.Name} , enter coordinates to attack: ");
             var coordinates = Console.ReadLine();
             var row = coordinates[0] - 65;
             var column = coordinates[1] - 49;
-            if (othersShipsGrid[row].Columns[column].SpotStatus == GridSpot.Status.Ship)
+            if (otherPlayer.ShipsGrid[row].Columns[column].SpotStatus == Status.Ship)
             {
                 Console.WriteLine("Hit!");
-                attackGrid[row].Columns[column].SpotStatus = GridSpot.Status.Hit;
+                player.AttacksGird[row].Columns[column].SpotStatus = Status.Hit;
+
             }
             else
             {
                 Console.WriteLine("Miss!");
-                attackGrid[row].Columns[column].SpotStatus = GridSpot.Status.Miss;
+                player.AttacksGird[row].Columns[column].SpotStatus = Status.Miss;
             }
-            PrintGrid(attackGrid);
+            PrintGrid(player.AttacksGird);
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
             Console.Clear();
         }
 
-        static void CalculateScores(List<GridRow> attackGrid) {
-            currentPlayerHits = 0;
-            currentPlayerMisses = 0;
-            currentPlayersunk = 0;
-
-            for (int i = 0; i < attackGrid.Count; i++)
+        static void CheckForWinner(PlayerModel player) {
+            if (player.Hits == 5)
             {
-                for (int j = 0; j < attackGrid[i].Columns.Count; j++)
-                {
-                    switch (attackGrid[i].Columns[j].SpotStatus)
-                    {
-                        case GridSpot.Status.Hit:
-                            currentPlayerHits++;
-                            break;
-                        case GridSpot.Status.Miss:
-                            currentPlayerMisses++;
-                            break;
-                        case GridSpot.Status.Sunk:
-                            currentPlayersunk++;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            Console.WriteLine("Hits: " + currentPlayerHits);
-            Console.WriteLine("Misses: " + currentPlayerMisses);
-            Console.WriteLine("Sunk: " + currentPlayersunk);
-        }
-
-        static void CheckForWinner(string player) {
-            if (currentPlayerHits == 5)
-            {
-                Console.WriteLine(player + " wins!");
+                Console.WriteLine(player.Name + " wins!");
                 Console.WriteLine("Press any key to exit...");
                 Console.ReadKey();
                 Environment.Exit(0);

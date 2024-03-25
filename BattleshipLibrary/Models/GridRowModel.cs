@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BattleshipLibrary.Models {
-    public class GridRow {
-        public List<GridSpot> Columns { get; set; }
-
+    public class GridRowModel {
+        public List<GridSpotModel> Columns { get; set; }
     }
 }
