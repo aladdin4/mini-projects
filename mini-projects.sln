@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "chapter-04", "chapter-04\chapter-04.csproj", "{2CC8E6B8-9B27-41DB-B618-A6880C70E6DA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoLibrary", "DemoLibrary\DemoLibrary.csproj", "{5D18AEFF-12EF-43A8-8A65-289607C81484}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestBookLibrary", "GuestBookLibrary\GuestBookLibrary.csproj", "{F84CA25B-FDEE-4D26-9440-272AFBC828EA}"
@@ -15,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipUI", "BattleshipU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleshipLibrary", "BattleshipLibrary\BattleshipLibrary.csproj", "{4834E062-3491-4836-A12C-2BE3F0D567B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionMethods", "ExtensionMethods\ExtensionMethods.csproj", "{5BE06B86-8A85-47C4-903F-82DC2FD62A30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtensionMethods", "ExtensionMethods\ExtensionMethods.csproj", "{5BE06B86-8A85-47C4-903F-82DC2FD62A30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleshipLibrary.Tests", "BattleshipLibrary.Tests\BattleshipLibrary.Tests.csproj", "{ADEF2A2B-D427-4852-B18E-F6E237509590}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2CC8E6B8-9B27-41DB-B618-A6880C70E6DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CC8E6B8-9B27-41DB-B618-A6880C70E6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CC8E6B8-9B27-41DB-B618-A6880C70E6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CC8E6B8-9B27-41DB-B618-A6880C70E6DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D18AEFF-12EF-43A8-8A65-289607C81484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D18AEFF-12EF-43A8-8A65-289607C81484}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D18AEFF-12EF-43A8-8A65-289607C81484}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,6 +47,10 @@ Global
 		{5BE06B86-8A85-47C4-903F-82DC2FD62A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BE06B86-8A85-47C4-903F-82DC2FD62A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BE06B86-8A85-47C4-903F-82DC2FD62A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADEF2A2B-D427-4852-B18E-F6E237509590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADEF2A2B-D427-4852-B18E-F6E237509590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADEF2A2B-D427-4852-B18E-F6E237509590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADEF2A2B-D427-4852-B18E-F6E237509590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

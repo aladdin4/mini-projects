@@ -15,7 +15,7 @@ namespace BattleshipLibrary {
             });
         }
 
-        private static List<GridRowModel> CreateGrid(int rows, int columns) {
+        public static List<GridRowModel> CreateGrid(int rows, int columns) {
             var grid = new List<GridRowModel>();
             for (int i = 0; i < rows; i++)
             {
