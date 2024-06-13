@@ -8,15 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MessageWall2
+namespace WinFormMiniProject
 {
-    public partial class Dashboard : Form
+    public partial class PersonEntry : Form
     {
-        public Dashboard()
+        public PersonEntry()
         {
             InitializeComponent();
         }
 
-        
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
