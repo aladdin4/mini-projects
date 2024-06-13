@@ -8,5 +8,7 @@ namespace DemoLibrary.Models {
         public string LastName { get; set; }
         public string Title { get; set; }
         public DateTime BirthDay { get; set; }
+        public bool IsActive { get; set; }
+        public List<AddressModel> Addresses { get; set; }
     }
 }
