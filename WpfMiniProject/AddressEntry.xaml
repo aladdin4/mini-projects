@@ -40,7 +40,7 @@
         <TextBlock Grid.Row="4" Grid.Column="1" Margin="0 10 5 0" HorizontalAlignment="Right" FontSize="16"> Zip Code:</TextBlock>
         <TextBox Grid.Row="4" Grid.Column="2" x:Name="zipCodeText" MinWidth="200" MaxWidth="300" Margin="0 10 0 0"></TextBox>
 
-        <Button x:Name="saveAddress" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="20" Padding="0 10">Save</Button>
+        <Button x:Name="saveAddress" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="20" Padding="0 10" Click="saveAddress_Click">Save</Button>
 
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using DemoLibrary;
+using DemoLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,6 +25,18 @@ namespace WpfMiniProject
             InitializeComponent();
             _parent = parent;   // saving the parent object for long term use.
         }
-       
+
+        private void saveAddress_Click(object sender, RoutedEventArgs e)
+        {
+            AddressModel newAddress = new AddressModel
+            {
+                City = cityText.Text,
+                StreetAddress = streetAddressText.Text,
+                State = stateText.Text,
+                ZipCode = zipCodeText.Text
+            };
+            _parent.SaveAddress(newAddress);
+            this.Close();
+        }
     }
 }

@@ -34,7 +34,7 @@
         <CheckBox Grid.Row="2" Grid.Column="2" x:Name="activeCheckBox" Margin="0 10 0 0" VerticalAlignment="Center"></CheckBox>
 
         <TextBlock Grid.Row="3" Grid.Column="1" Margin="0 30 5 0" HorizontalAlignment="Right" FontSize="16"> Addresses:</TextBlock>
-        <Button x:Name="addAddress" Grid.Row="3" Grid.Column="2" Margin="0 30 0 0" HorizontalAlignment="Right" > Add </Button>
+        <Button x:Name="addAddress" Grid.Row="3" Grid.Column="2" Margin="0 30 0 0" HorizontalAlignment="Right" Click="addAddress_Click"> Add </Button>
 
         <ListBox x:Name="adressesList"  Grid.Row="4" Grid.Column="1"  Grid.ColumnSpan="2"    Margin="0 5 0 0">
             <ListBox.ItemTemplate>
@@ -53,6 +53,6 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button x:Name="savePerson" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="20" Padding="0 10">Save</Button>
+        <Button x:Name="savePerson" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="20" Padding="0 10" Click="savePerson_Click">Save</Button>
     </Grid>
 </Window>
