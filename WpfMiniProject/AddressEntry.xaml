@@ -1,0 +1,46 @@
+﻿<Window x:Class="WpfMiniProject.AddressEntry"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfMiniProject"
+        mc:Ignorable="d"
+        Title="AddressEntry" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+      
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 20 0 0" HorizontalAlignment="Center" FontSize="24">Address Entry</TextBlock>
+       
+        
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="0 20 5 0" HorizontalAlignment="Right" FontSize="16" > Street Address:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="2" x:Name="streetAddressText" MinWidth="200" MaxWidth="300" Margin="0 20 0 0"></TextBox>
+
+        <TextBlock Grid.Row="2" Grid.Column="1" Margin="0 10 5 0" HorizontalAlignment="Right" FontSize="16"> City:</TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name="cityText" MinWidth="200" MaxWidth="300" Margin="0 10 0 0"></TextBox>
+
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="0 20 5 0" HorizontalAlignment="Right" FontSize="16" > State:</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="2" x:Name="stateText" MinWidth="200" MaxWidth="300" Margin="0 20 0 0"></TextBox>
+
+        <TextBlock Grid.Row="4" Grid.Column="1" Margin="0 10 5 0" HorizontalAlignment="Right" FontSize="16"> Zip Code:</TextBlock>
+        <TextBox Grid.Row="4" Grid.Column="2" x:Name="zipCodeText" MinWidth="200" MaxWidth="300" Margin="0 10 0 0"></TextBox>
+
+        <Button x:Name="saveAddress" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Margin="20" Padding="0 10">Save</Button>
+
+    </Grid>
+</Window>
