@@ -24,11 +24,9 @@ namespace TodoApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
             app.UseHttpsRedirection();
             app.UseAuthentication();   //should be first then authorization
             app.UseAuthorization();
-
             app.MapControllers();
             app.MapHealthChecks("/health").AllowAnonymous();
             app.Run();
