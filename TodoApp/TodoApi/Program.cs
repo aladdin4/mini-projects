@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TodoApi.StartupConfig;
+using TodoLibrary.DataAccess;
 
 namespace TodoApi
 {
@@ -11,34 +13,8 @@ namespace TodoApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddAuthorization( opts =>
-            {
-                opts.FallbackPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-            });
-
-            builder.Services.AddHealthChecks().AddSqlServer(builder.Configuration.GetConnectionString("Default"));
-            builder.Services.AddAuthentication("Bearer").AddJwtBearer(opts =>
-            {
-                opts.TokenValidationParameters = new()
-                {
-                    ValidateIssuer = true,
-                    //So, the _config that we fed is originally coming from here? from the builder?
-                    ValidIssuer = builder.Configuration.GetValue<string>("Authentication:Issuer"),
-                    ValidateAudience = true,
-                    ValidAudience= builder.Configuration.GetValue<string>("Authentication: Audience"),
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("Authentication:SecretKey")))
-
-                };
-
-            });
-
+            // Add services to the container. (through extension method)
+            builder.AddServices();
 
             var app = builder.Build();
 
@@ -52,7 +28,6 @@ namespace TodoApi
             app.UseHttpsRedirection();
             app.UseAuthentication();   //should be first then authorization
             app.UseAuthorization();
-
 
             app.MapControllers();
             app.MapHealthChecks("/health").AllowAnonymous();
