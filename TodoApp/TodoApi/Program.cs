@@ -15,7 +15,6 @@ namespace TodoApi
 
             // Add services to the container. (through extension method)
             builder.AddServices();
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,11 +23,14 @@ namespace TodoApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
             app.UseHttpsRedirection();
             app.UseAuthentication();   //should be first then authorization
             app.UseAuthorization();
+
             app.MapControllers();
             app.MapHealthChecks("/health").AllowAnonymous();
+
             app.Run();
         }
     }
