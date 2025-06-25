@@ -28,7 +28,7 @@ public class TodoData : ITodoData
 
     public async Task<TodoModel?> Create(int assignedTo, string task)
     {
-        var result = await _sql.LoadData<TodoModel, dynamic>("dbo.spTodos_Create", new { Task = task, AsssignedTo = assignedTo }, "Default");
+        var result = await _sql.LoadData<TodoModel, dynamic>("dbo.spTodos_Create", new { Task = task, AssignedTo = assignedTo }, "Default");
         return result.FirstOrDefault();
     }
 

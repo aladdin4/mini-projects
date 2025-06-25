@@ -26,7 +26,7 @@ namespace TodoApi.Controllers
 
         [HttpPost("token")]
         [AllowAnonymous]
-        public ActionResult<JwtSecurityToken> Authenticate([FromBody] AuthenticationData data)
+        public ActionResult<string> Authenticate([FromBody] AuthenticationData data)
         {
 
             var user = ValidateData(data);
@@ -35,7 +35,7 @@ namespace TodoApi.Controllers
                 return Unauthorized();
             }
             var token = GenerateToken(user);
-            return token;
+            return Ok(token);
         }
 
         private UserData? ValidateData(AuthenticationData data)
@@ -63,7 +63,7 @@ namespace TodoApi.Controllers
             return false;
         }
 
-        private JwtSecurityToken GenerateToken(UserData user)
+        private string GenerateToken(UserData user)
         {
             var secretKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config.GetValue<string>("Authentication:SecretKey")));
             var signingCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -82,7 +82,8 @@ namespace TodoApi.Controllers
                 signingCredentials
                 );
 
-            return token;
+            // Use JwtSecurityTokenHandler to write the token into a string
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
     }

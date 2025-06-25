@@ -43,7 +43,7 @@ public static class DependecyInjectionExtenstions
                 //So, the _config that we fed is originally coming from here? from the builder?
                 ValidIssuer = builder.Configuration.GetValue<string>("Authentication:Issuer"),
                 ValidateAudience = true,
-                ValidAudience = builder.Configuration.GetValue<string>("Authentication: Audience"),
+                ValidAudience = builder.Configuration.GetValue<string>("Authentication:Audience"),
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("Authentication:SecretKey")))
             };

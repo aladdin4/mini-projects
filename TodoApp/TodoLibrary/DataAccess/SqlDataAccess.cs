@@ -1,12 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TodoLibrary.DataAccess;
 
@@ -28,11 +23,10 @@ public class SqlDataAccess : ISqlDataAccess
         return rows;
     }
 
-    //returning the task, hence, the execution will be Sync. And the waiting is expected to be done by the caller
-    public Task SaveData<T>(string storedProcedure, T parameters, string connectionStringName)
+    public async Task SaveData<T>(string storedProcedure, T parameters, string connectionStringName)
     {
         string connectionString = _config.GetConnectionString(connectionStringName);
         using IDbConnection connection = new SqlConnection(connectionString);
-        return connection.ExecuteAsync(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+        await connection.ExecuteAsync(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
     }
 }
